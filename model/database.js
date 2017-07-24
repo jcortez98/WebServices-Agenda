@@ -3,7 +3,7 @@ var parametros = {
   host: 'localhost',
   user: 'root',
   password: '',
-  database: 'AgendaIn6av'
+  database: 'AgendaIn6avCortez'
 };
 var connection = mysql.createConnection(parametros);
 
