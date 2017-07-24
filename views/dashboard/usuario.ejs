@@ -1,0 +1,107 @@
+<% include layout %>
+<div class="row">
+  <div class="col-md-12">
+    <h2>Lista de contactos</h2>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Nick</th>
+          <th>Contrasena</th>
+          <th>Opciones</th>
+        </tr>
+      </thead>
+      <tbody data-bind="foreach: usuarios">
+        <tr>
+          <td data-bind="text: nick"></td>
+          <td data-bind="text: contrasena"></td>
+          <td><div class="btn-group">
+            <button class="btn btn-warning"
+              data-bind="click: $root.cargar" data-toggle="modal" data-target="#modificarContacto">Editar</button>
+            <button class="btn btn-danger" data-bind="click: $root.eliminar">Eliminar</button>
+          </div></td>
+        </tr>
+      </tbody>
+    </table>
+    <button class="btn btn-danger" data-toggle="modal" data-target="#agregarContacto">Agregar</button>
+  </div>
+</div>
+<!-- Modal -->
+<div id="modificarContacto" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Editar</h4>
+        <h4></h4>
+      </div>
+      <div class="modal-body" data-bind="if: cargado()">
+        <form data-bind="submit: editar" >
+          <div class="form-group">
+              <label for="nick">Nick</label>
+              <input type="text"
+                     class="form-control"
+                     name="nick"
+                     data-bind="value: cargado().nick"
+                     id="nick" required/>
+              <label for="contrasena">Contrasena</label>
+              <input type="text"
+                      class="form-control"
+                      name="contrasena"
+                      data-bind="value: cargado().contrasena"
+                      id="contrasena" required/>
+          </div>
+          <div class="form-group">
+              <button type="submit" class="btn btn-primary">Guardar</button>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+        <!-- Modal -->
+        <div id="agregarContacto" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Agregar</h4>
+                <h4></h4>
+              </div>
+              <div class="modal-body">
+                <form data-bind="submit: agregar">
+                  <div class="form-group">
+                      <label for="nick">Nick</label>
+                      <input type="text"
+                             class="form-control"
+                             name="nick"
+                             data-bind="value: nuevo.nick"
+                             id="nick" required/>
+                      <label for="contrasena">Contrasena</label>
+                      <input type="text"
+                              class="form-control"
+                              name="contrasena"
+                              data-bind="value: nuevo.contrasena"
+                              id="contrasena" required/>
+                  </div>
+                  <div class="form-group">
+                      <button type="submit" class="btn btn-primary">Guardar</button>
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+<% include footer %>
+<script src="/javascripts/usuarioV.js"></script>
